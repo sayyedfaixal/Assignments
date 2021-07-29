@@ -1,0 +1,43 @@
+{
+  "title": "Six Sigma IV - DMAIC - Go!",
+  "subTitle": "Analyze",
+  "btnClose": "&times;",
+  "closeBtnText": "CLOSE",
+  "info": "Check Your Knowledge",
+  "headTitle": "Match the relevant area to its characteristic feature",
+  "headInfo": "When you're done, click <strong>Submit.</strong>",
+  "btnResetDisabled": "./images/resetDisableBtn_en.png",
+  "btnShowmeDisabled": "./images/showMeDisable_en.png",
+  "btnSubmitDisabled": "./images/submitDisableBtn_en.png",
+  "btnResetEnabled": "./images/resetBtn_en.png",
+  "btnShowmeEnabled": "./images/showMe_en.png",
+  "btnSubmitEnabled": "./images/submitBtn_en.png",
+  "correct": "./images/rightSign.png",
+  "incorrect": "./images/wrongSign.png",
+  "questionsData": [
+    {
+      "question": "Means that the probability that a relationship between two variables is NOT a coincidence.",
+      "ans": "p=0.03"
+    },
+    {
+      "question": "To visualize a process over time.",
+      "ans": "run chart"
+    },
+    {
+      "question": "Means that a variable shows a high correlation with another variable.",
+      "ans": "R<sup>2</sup> = 0.87"
+    },
+    {
+      "question": "To visualize a possible correlation between variables.",
+      "ans": "scatter plot"
+    },
+    {
+      "question": "Means that the correlation between several variables is weak.",
+      "ans": "R<sup>2</sup> = 0.38"
+    },
+    {
+      "question": "Means that the probability that a relationship between two variables may be a coincidence.",
+      "ans": "p=0.13"
+    }
+  ]
+}

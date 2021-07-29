@@ -1,0 +1,41 @@
+
+{
+    "title": "Six Sigma IV - DMAIC - Go!",
+    "subTitle": "Analyze",
+    "btnClose": "&times;",
+    "closeBtnText": "CLOSE",
+    "info": "Check Your Knowledge",
+    "headTitle": "Match the relevant area to its characteristic feature",
+    "headInfo": "When you're done, click <strong>Submit.</strong>",
+    "btnResetDisabled": "./images/resetDisableBtn_en.png",
+    "btnShowmeDisabled": "./images/showMeDisable_en.png",
+    "btnSubmitDisabled": "./images/submitDisableBtn_en.png",
+    "btnResetEnabled": "./images/resetBtn_en.png",
+    "btnShowmeEnabled": "./images/showMe_en.png",
+    "btnSubmitEnabled": "./images/submitBtn_en.png",
+    "correct": "./images/rightSign.png",
+    "incorrect": "./images/wrongSign.png",
+    "answers" : ["true", "false", "false", "true", "false"],
+    "questionsData": [
+        {
+            "id" : "1",
+            "ques" : "The purpose of Analyze phase is to understand which inputs are causing the problem in the output."
+        },
+        {
+            "id" : "2",
+            "ques" : "The purpose of Analyze phase is to create lot of charts and graphs."
+        },
+        {
+            "id" : "3",
+            "ques" : "Once in the Analyze phase you must remain there until the root cause has been figured out."
+        },
+        {
+            "id" : "4",
+            "ques" : "The Analyze phase, as part of the DMAIC process, may mean returning to the Measure or even Define phases, before being able to conclude what the root cause of the problem."
+        },
+        {
+            "id" : "5",
+            "ques" : "The Analyze phase cannot succed without creating charts."
+        }
+    ]
+  }

@@ -1,0 +1,67 @@
+.container{
+    display: flex;
+    margin-top: 1%;
+}
+.box1{
+    background-color: #E9EFF3;
+    border-radius: 0.2rem;
+    color: #43A5E9;
+    text-align: center;
+    margin-left: 5%;
+    padding: 1%;
+    width: 2%;
+}
+.box2{
+    background-color: #F3F3F3;
+    flex-basis: 70%;
+    padding: 1%;
+}
+.box3{
+    background-color:#F3F3F3;
+    flex-basis: 20%;
+    text-align: center;
+    padding: 1%;
+}
+.box4{
+    background-color: #F3F3F3;
+    flex-basis: 20%;
+    text-align: center;
+    padding: 1%;
+    margin-right: 5%;
+}
+
+input[type="radio"] {
+    border: 0px;
+    width: 22px;
+    height: 2em;
+    vertical-align: middle;
+  }
+.hide{
+    display: none;
+}
+#resetBtn{
+    position: absolute;
+    bottom: 50px;
+    height: 44px;
+    width: 134px;
+    border: 0;
+    left: 75px;
+
+}
+#submitBtn{
+    position: absolute;
+    height: 44px;
+    width: 134px;
+    border: 0;
+    bottom: 50px;
+    right: 100px;
+}
+#showmeBtn{
+    position:absolute;
+    bottom: 50px;
+    left: 250px;
+    height: 44px;
+    width: 134px;
+    border: 0;
+
+}

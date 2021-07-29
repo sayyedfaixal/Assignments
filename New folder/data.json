@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "ques": "Means that the probability that a relationship between two variables is NOT a coincidence.",
+        "ans": "p=0.03"
+    },
+    {
+        "id": 2,
+        "ques": "To visualize a process over time.",
+        "ans": "run chart"
+    },
+    {
+        "id": 3,
+        "ques": "Means that a variable shows a high correlation with another variable.",
+        "ans": "R^2 = 0.87"
+    },
+    {
+        "id": 4,
+        "ques": "To visualize a possible correlation between variable.",
+        "ans": "scatter plot"
+    },
+    {
+        "id": 5,
+        "ques": "Means that the correlation between several variable is weak.",
+        "ans": "R^2 = 0.38"
+    },
+    {
+        "id": 6,
+        "ques": "Means that the probability that a relationship between two variables may be a coincidence.",
+        "ans": "p = 0.13"
+    }
+]

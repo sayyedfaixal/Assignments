@@ -1,0 +1,43 @@
+
+.submit{
+  color: rgb(41, 153, 231);
+}
+.data{
+  display: flex;
+  margin: 1%;
+}
+.srData{
+  background-color: rgba(41, 153, 231, 0.05);
+  color: rgb(41, 153, 231);
+  padding: 1%;
+}
+.questionData{
+  background-color: rgb(243, 243, 243);
+  padding: 1%;
+  flex-grow: 1;
+}
+.answerData{
+  background-color:#fff;
+  padding: 1%;
+  border-style: dashed;
+  border-width: 1px;
+  justify-content: center;
+  border-radius: 5px;
+  width: 5%;
+}
+.choiceData{
+  background-color:rgba(165, 228, 228, 0.521);
+  padding: 1%;
+  margin-left: 25%;
+  margin-right: 5%;
+  border-width: 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  /* justify-content: center; */
+}
+.hold{
+  border: solid red 4px;
+}
+.hide{
+  display: none;
+}
