@@ -11,8 +11,8 @@ fetch('data.json')
   });
 
 function appendData(jsonData) {
-  console.log(jsonData);
-  const ActivityDD = function () {
+  // console.log(jsonData);
+  const Test = function () {
     const elementsObject = {};
     const self = this;
 
@@ -108,7 +108,7 @@ function appendData(jsonData) {
       elementsObject['btnSubmit'].src = jsonData.btnSubmitDisabled;
     };
 
-    this.questionsDisplay = function () {
+    this.loadQuestions = function () {
       const options = jsonData.questionsData
         .map((answer) => answer.ans)
         // Randomize the answer Box
@@ -269,7 +269,7 @@ function appendData(jsonData) {
     this.init();
 
     // Display Questions
-    this.questionsDisplay();
+    this.loadQuestions();
 
     // Enable Drag & Drop
     this.enableDragAndDrop();
@@ -278,6 +278,7 @@ function appendData(jsonData) {
     this.handleEvents();
   };
 
-  const app = new ActivityDD();
+  const app = new Test();
 
 }
+ 

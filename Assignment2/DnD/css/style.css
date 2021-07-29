@@ -79,7 +79,9 @@
 
 /* Sr no bg-coloraa */
 .question .srno {
-  background-color: rgba(41, 152, 231, 0.309);
+  color: #43A5E9;
+
+  background-color: #E9EFF3;
   border-bottom-left-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
   font-weight: bold;
