@@ -13,6 +13,56 @@ function appendData(jsonData) {
     const Test = function () {
         var mainContainer = document.getElementById("mainContainer");
         mainContainer.innerHTML = "";
+        // console.log(mainContainer);
+        {/* 
+        <button id="resetBtn" disabled="true"></button>
+        <button id="showmeBtn" disabled="true"></button>
+        <button id="submitBtn"></button> */}
+
+        var headerContainer = document.getElementById("heading-container");
+        headerContainer.innerHTML = "";
+
+        var headerDiv = document.createElement("div");
+        var headerH3 = document.createElement("h3");
+        var headerP = document.createElement("p");
+        var closeDiv = document.createElement("div");
+        var pCloseDiv = document.createElement("p");
+        var detailsDiv = document.createElement("div");
+        var detailInfoDiv = document.createElement("div");
+        var detailHr = document.createElement("hr");
+        var detailHeadTitle = document.createElement("div");
+        var detailHeadInfo = document.createElement("div");
+        var strongSubmit = document.createElement("strong");
+
+        // Adding respective classess and Inner Text
+        detailInfoDiv.classList.add("info");
+        detailInfoDiv.innerText = "Check Your Knowledge";
+        detailHr.classList.add("dash");
+        detailHeadTitle.classList.add("head-title");
+        detailHeadTitle.innerText = "Match the relevant area to its characteristic feature";
+
+        strongSubmit.innerText = "Submit";
+        detailHeadInfo.classList.add("head-info");
+        detailHeadInfo.append(strongSubmit)
+        detailHeadInfo.innerText = "When you're done, click ";
+
+        detailsDiv.classList.add("details");
+        detailsDiv.append(detailInfoDiv, detailHr, detailHeadTitle, detailHeadInfo);
+        pCloseDiv.classList.add("cls");
+        pCloseDiv.innerText = "CLOSE";
+        closeDiv.classList.add("btn-close", "close");
+        closeDiv.innerText = "×";
+        headerP.classList.add("sub-title");
+        headerP.innerText = "Analyze"
+        headerH3.classList.add("title");
+        headerH3.innerText = "Six Sigma IV - DMAIC - Go!";
+        headerDiv.classList.add("header");
+
+        detailHeadInfo.append(strongSubmit);
+        closeDiv.append(pCloseDiv);
+        headerDiv.append(headerH3, headerP, closeDiv);
+
+        headerContainer.append(headerDiv, detailsDiv)
 
         for (let i = 0; i < jsonData.questionsData.length; i++) {
 
