@@ -16,8 +16,9 @@
     </div>
     <div id="mainContainer">
     </div>
-    <footer class="footer"></footer>
-
+    <button id="resetBtn" disabled="true"></button>
+    <button id="showmeBtn" disabled="true"></button>
+    <button id="submitBtn"></button>
 </body>
 
 </html>

@@ -13,6 +13,11 @@ function appendData(jsonData) {
     const Test = function () {
         var mainContainer = document.getElementById("mainContainer");
         mainContainer.innerHTML = "";
+        // console.log(mainContainer);
+        {/* 
+        <button id="resetBtn" disabled="true"></button>
+        <button id="showmeBtn" disabled="true"></button>
+        <button id="submitBtn"></button> */}
 
         var headerContainer = document.getElementById("heading-container");
         headerContainer.innerHTML = "";
@@ -28,20 +33,8 @@ function appendData(jsonData) {
         var detailHeadTitle = document.createElement("div");
         var detailHeadInfo = document.createElement("div");
         var strongSubmit = document.createElement("strong");
-        var resetBtn = document.createElement("button");
-        var showmeBtn = document.createElement("button");
-        var submitBtn = document.createElement("button");
-        var footer = document.getElementsByClassName("footer");
 
         // Adding respective classess and Inner Text
-        resetBtn.setAttribute("id", "resetBtn");
-        showmeBtn.setAttribute("id", "showmeBtn");
-        submitBtn.setAttribute("id", "submitBtn");
-        resetBtn.setAttribute("disabled", true);
-        submitBtn.setAttribute("disabled", true);
-        console.log(submitBtn);
-        footer[0].append(resetBtn, showmeBtn, submitBtn);
-        console.log(footer[0]);
         detailInfoDiv.classList.add("info");
         detailInfoDiv.innerText = "Check Your Knowledge";
         detailHr.classList.add("dash");
@@ -258,23 +251,23 @@ function appendData(jsonData) {
     const app = new Test();
 
 }
-// const elementsObject = {};
-// const self = this;
+const elementsObject = {};
+const self = this;
 
-// // Creating Custom Elements
-// this.createCustomElement = function (
-//     type = 'div',
-//     parent,
-//     nameOfElement,
-//     classes
-// ) {
-//     const element = document.createElement(type);
-//     if (classes.length > 1) element.classList.add(...classes);
-//     else element.classList.add(classes);
-//     if (type === 'img');
-//     else {
-//         if (jsonData[nameOfElement]) element.innerHTML = jsonData[nameOfElement];
-//     }
-//     parent.append(element);
-//     elementsObject[nameOfElement] = element;
-// };
+// Creating Custom Elements
+this.createCustomElement = function (
+    type = 'div',
+    parent,
+    nameOfElement,
+    classes
+) {
+    const element = document.createElement(type);
+    if (classes.length > 1) element.classList.add(...classes);
+    else element.classList.add(classes);
+    if (type === 'img');
+    else {
+        if (jsonData[nameOfElement]) element.innerHTML = jsonData[nameOfElement];
+    }
+    parent.append(element);
+    elementsObject[nameOfElement] = element;
+};
