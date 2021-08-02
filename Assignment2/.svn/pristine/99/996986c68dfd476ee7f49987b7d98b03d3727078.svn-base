@@ -124,11 +124,7 @@ function appendData(jsonData) {
             // console.log(containerDiv);
         }
 
-        closeDiv.addEventListener("click", ()=>{
-            if(confirm("Do you really want to close the window?")){
-                    window.close();
-            }
-        })
+
         //Adding event listener on Buttons
         var submitBtnEn = document.getElementById("submitBtn");
         submitBtnEn.addEventListener("click", submit);

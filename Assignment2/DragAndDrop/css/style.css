@@ -132,8 +132,9 @@
 }
 
 .ans-box.ans-box-hover {
-  border-width: 5px;
-  transform: scale(1.1);
+  /* border-width: 5px; */
+  border-color: green;
+  /* transform: scale(1.1); */
 }
 
 .question .ques {
