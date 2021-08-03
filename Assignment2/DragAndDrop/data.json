@@ -14,6 +14,19 @@
   "btnSubmitEnabled": "./images/submitBtn_en.png",
   "correct": "./images/rightSign.png",
   "incorrect": "./images/wrongSign.png",
+  "rightAnsImg": {
+    "src": "./images/rightSign.png",
+    "height": "15px",
+    "width": "15px"
+  },
+  "wrongAnsImg": {
+    "src": "./images/wrongSign.png",
+    "height": "15px",
+    "width": "15px"
+  },
+  "blankImg" : "./images/img_01.png",
+  "correctAns": [ "p=0.03", "run chart",  "R² =0.87", "scatter plot",  "R² = 0.38", "p=0.13"],
+ 
   "questionsData": [
     {
       "question": "Means that the probability that a relationship between two variables is NOT a coincidence.",
@@ -25,7 +38,7 @@
     },
     {
       "question": "Means that a variable shows a high correlation with another variable.",
-      "ans": "R<sup>2</sup> = 0.87"
+      "ans": "R² =0.87"
     },
     {
       "question": "To visualize a possible correlation between variables.",
@@ -33,7 +46,7 @@
     },
     {
       "question": "Means that the correlation between several variables is weak.",
-      "ans": "R<sup>2</sup> = 0.38"
+      "ans": "R² = 0.38"
     },
     {
       "question": "Means that the probability that a relationship between two variables may be a coincidence.",

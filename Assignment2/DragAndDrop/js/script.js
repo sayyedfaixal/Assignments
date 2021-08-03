@@ -11,10 +11,11 @@ fetch('data.json')
   });
 
 function appendData(jsonData) {
+
   // console.log(jsonData);
   const Test = function () {
+
     const elementsObject = {};
-    const self = this;
 
     // Creating Custom Elements
     this.createCustomElement = function (
@@ -50,7 +51,12 @@ function appendData(jsonData) {
       this.createCustomElement('p', elementsObject['btnClose'], 'closeBtnText', [
         'cls',
       ]);
-
+      var close = document.getElementsByClassName("btn-close");
+      close[0].addEventListener("click", () => {
+        if (confirm("Do you really want to close!")) {
+          window.close();
+        }
+      })
       // Container Section
       this.createCustomElement(undefined, document.body, 'container', [
         'container',
@@ -83,29 +89,48 @@ function appendData(jsonData) {
         undefined,
         elementsObject['container'],
         'questionsDiv',
-        ['ques']
+        ['questionz']
       );
 
       // Footer Section
       this.createCustomElement(undefined, document.body, 'footer', ['footer']);
 
-      this.createCustomElement('img', elementsObject['footer'], 'btnReset', [
-        'btn',
-        'btn-reset',
-      ]);
-      elementsObject['btnReset'].src = jsonData.btnResetDisabled;
+      var btnDiv = document.createElement("div");
+      btnDiv.classList.add("btnDiv");
 
-      this.createCustomElement('img', elementsObject['footer'], 'btnShowme', [
-        'btn',
-        'btn-show-me',
-      ]);
-      elementsObject['btnShowme'].src = jsonData.btnShowmeDisabled;
+      var resetBtn = document.createElement("button");
+      resetBtn.classList.add("btn");
+      resetBtn.classList.add("btn-reset");
+      resetBtn.disabled = true;
+      resetBtn.style.height = "50px";
+      resetBtn.style.width = "150px";
+      resetBtn.style.background = `url(${jsonData.btnResetDisabled}) no-repeat`;
+      resetBtn.style.backgroundSize = "100% 100%";
+      btnDiv.append(resetBtn);
 
-      this.createCustomElement('img', elementsObject['footer'], 'btnSubmit', [
-        'btn',
-        'btn-submit',
-      ]);
-      elementsObject['btnSubmit'].src = jsonData.btnSubmitDisabled;
+      var showMeBtn = document.createElement("button");
+      showMeBtn.classList.add("btn");
+      showMeBtn.classList.add("btn-show-me");
+      showMeBtn.disabled = true;
+      showMeBtn.style.height = "50px";
+      showMeBtn.style.width = "150px";
+      showMeBtn.style.background = `url(${jsonData.btnShowmeDisabled}) no-repeat`;
+      showMeBtn.style.backgroundSize = "100% 100%";
+      btnDiv.append(showMeBtn);
+
+      var submitBtn = document.createElement("button");
+      submitBtn.classList.add("btn");
+      submitBtn.classList.add("btn-submit");
+      submitBtn.disabled = true;
+      submitBtn.style.height = "50px";
+      submitBtn.style.width = "150px";
+      submitBtn.style.background = `url(${jsonData.btnSubmitDisabled}) no-repeat`;
+      submitBtn.style.backgroundSize = "100% 100%";
+      btnDiv.append(submitBtn);
+
+      var footer = document.querySelector(".footer");
+      footer.append(btnDiv);
+
     };
 
     this.loadQuestions = function () {
@@ -114,171 +139,206 @@ function appendData(jsonData) {
         // Randomize the answer Box
         .sort(() => (Math.random() > 0.5 ? 1 : -1));
       // Loading Questions and options initially
+      var markup = ""
       jsonData.questionsData.forEach((ques, index) => {
-        const markup = `
-          <div class="question">
-            <div class="srno">
-            ${index + 1}
-            </div>
-            <div class="ques">
-            ${ques.question}
-            </div>
-            <div class="ans-box validation"> <span id="${index}" class="mark"></span>
-            </div>
-            <div class="ans-opt ans-box">
-            <p class="ans-options" data-ans="${index}" draggable="true"> ${options[index]
-          } </p>
-            </div>
-          </div>
+        markup += `
+        <div class="question">
+        <div class="srno"><strong> ${index + 1}.</strong></div>
+        <div class="ques"> ${ques.question}</div>
+        <div class="ans-box" id="drop${index}"  ></div>
+        <img class="ansImg hide" id="ansImg${index}" 
+            src="${jsonData.wrongAnsImg.src}" height="${jsonData.rightAnsImg.height}" width="${jsonData.rightAnsImg.width}">
+        <div class="options options-drag${index}">
+            <div class="ans-options" id="drag${index}" style="background:${jsonData.blankImg}">
+                <span style="pointer-events:none"><strong>${options[index]}</strong>
+                </span>
+              </div>
+              </div>
+          </div>                           
           `;
-        elementsObject['questionsDiv'].insertAdjacentHTML('beforeend', markup);
       });
+      elementsObject['questionsDiv'].innerHTML = markup;
+
     };
 
-    // Enabling Drag & Drop
+
     this.enableDragAndDrop = function () {
-      const options = document.querySelectorAll('.ans-box');
-      const ans = document.querySelectorAll('.ans-options');
-      let dragItem = null;
-      ans.forEach((an) => {
-        an.addEventListener('dragstart', function (e) {
-          if (!e.target.classList.contains('dropped')) {
-            e.target.classList.remove('dropped');
-          }
-          dragItem = this;
-          setTimeout(() => (this.style.display = 'none'), 0);
-        });
-        an.addEventListener('dragend', function (e) {
-          setTimeout(() => (this.style.display = 'block'), 0);
-          dragItem = null;
-        });
-      });
 
-      options.forEach((option) => {
-        option.addEventListener('dragenter', function (e) {
-          if (!e.target.classList.contains('dropped')) {
-            e.target.classList.add('ans-box-hover');
+      var resetBtn = document.querySelector(".btn-reset");
+      var showMeBtn = document.querySelector(".btn-show-me");
+      var submitBtn = document.querySelector(".btn-submit");
+
+      var ansOptions = document.querySelectorAll(".ans-options");
+
+      let currentDrag;
+      // console.log(originalTopArr, originalLeftArr);
+      ansOptions.forEach((drag) => {
+        //mousedown event
+        drag.addEventListener("mousedown", (e) => {
+          currentDrag = e.target.id;
+          // console.log(currentDrag);
+          e.target.parentNode.classList.remove("dropped");
+          if (e.target.parentNode.classList.contains("options")) {
+            const cloneDiv = document.createElement("div");
+            e.target.parentNode.append(cloneDiv);
+            cloneDiv.classList.add("ans-options", "drag", "clone");
+            cloneDiv.innerHTML = e.target.innerHTML;
           }
+          document.addEventListener("mousemove", onMouseMove);
+          document.addEventListener("mouseup", onMouseUp);
         });
-        option.addEventListener('dragover', function (e) {
-          if (!e.target.classList.contains('dropped')) {
-            e.preventDefault();
-          }
+        //dragstart event
+        drag.addEventListener("dragstart", (e) => {
+          return false;
         });
-        option.addEventListener('dragleave', function (e) {
-          if (!e.target.classList.contains('dropped')) {
-            e.target.classList.remove('ans-box-hover');
-          }
-        });
-        option.addEventListener('drop', function (e) {
+        drag.addEventListener("dragover", (e) => {
           e.preventDefault();
-          if (e.target.classList.contains('dragged')) {
-            e.target.classList.remove('dragged');
-          }
-          if (dragItem.parentElement.classList.contains('dropped')) {
-            dragItem.parentElement.classList.remove('dropped');
-          }
-          dragItem.parentElement.classList.add('dragged');
-          this.classList.add('dropped');
-          e.target.classList.remove('ans-box-hover');
-          this.append(dragItem);
-          self.buttonHandler();
         });
+        drag.addEventListener("drop", (e) => { });
       });
-    };
-
-    // Answer Validation
-    this.buttonHandler = function () {
-      const [...answers] = document.querySelectorAll('.validation');
-      if (answers.every((element) => element.classList.contains('dropped'))) {
-        elementsObject['btnSubmit'].src = jsonData.btnSubmitEnabled;
-      } else {
-        elementsObject['btnSubmit'].src = jsonData.btnSubmitDisabled;
+      function onMouseMove(e) {
+        const drag = document.getElementById(currentDrag);
+        drag.style.left = e.pageX - 100 + "px";
+        drag.style.top = e.pageY - 25 + "px";
       }
+      function onMouseUp(e) {
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+        let dropBox;
+        for (let i = 0; i < 6; i++) {
+          const pointer = document.getElementById(`drop${i}`);
+          console.log(pointer);
+          const topValue = pointer.offsetTop;
+          // console.log(topValue);
+          const leftValue = pointer.offsetLeft;
+          // console.log(leftValue);
+          // console.log(e.pageX, e.pageY);
+          if (
+            e.pageX > leftValue &&
+            e.pageX < leftValue + 200 &&
+            e.pageY > topValue &&
+            e.pageY < topValue + 50
+          ) {
+            if (pointer.classList.contains("dropped")) {
+              dropBox = false;
+              break;
+            }
+            e.target.style.top = `${topValue + 1}px`;
+            e.target.style.left = `${leftValue + 2}px`;
+            pointer.classList.add("dropped");
+            pointer.append(e.target);
+            dropBox = true;
+            break;
+          } else {
+            dropBox = false;
+          }
+        }
+        //taking back to the original position
+        if (!dropBox) {
+          const parent = document.querySelector(`.options-${currentDrag}`);
+          parent.innerHTML = "";
+          parent.appendChild(e.target);
+          e.target.style.left = `${parent.offsetLeft}px`;
+          e.target.style.top = `${parent.offsetTop}px`;
+        }
 
-      if (answers.some((element) => element.classList.contains('dropped'))) {
-        elementsObject['btnReset'].src = jsonData.btnResetEnabled;
-      } else {
-        elementsObject['btnReset'].src = jsonData.btnResetDisabled;
+        let counter = 0;
+        var ansBoxes = document.querySelectorAll(".ans-box");
+        ansBoxes.forEach((dropbox) => {
+          if (dropbox.classList.contains("dropped")) {
+            counter++;
+          }
+          //enable reset button
+          if (counter > 0) {
+            resetBtn.disabled = false;
+            resetBtn.style.background = `url(${jsonData.btnResetEnabled}) no-repeat`;
+            resetBtn.style.backgroundSize = "100% 100%";
+          } else {
+            // disableResetBtn();
+            resetBtn.disabled = true;
+            resetBtn.style.background = `url(${jsonData.btnResetDisabled}) no-repeat`;
+            resetBtn.style.backgroundSize = "100% 100%";
+          }
+          // enable submit button
+          if (counter === jsonData.questionsData.length) {
+            submitBtn.disabled = false;
+            submitBtn.style.background = `url(${jsonData.btnSubmitEnabled}) no-repeat`;
+            submitBtn.style.backgroundSize = "100% 100%";
+          } else {
+            // disableSubmitBtn();
+            submitBtn.disabled = true;
+            submitBtn.style.background = `url(${jsonData.btnSubmitDisabled}) no-repeat`;
+            submitBtn.style.backgroundSize = "100% 100%";
+          }
+        });
+
       }
-    };
-
-    this.submitData = function () {
-      const [...answers] = document.querySelectorAll('.mark');
-      if (!answers.every((answer) => answer.innerHTML === '')) return;
-      answers.forEach((answer) => {
-        let rightWrong;
-        if (
-          answer.nextElementSibling.innerHTML.trim() ===
-          jsonData.questionsData[answer.id].ans
-        )
-          rightWrong = jsonData.correct;
-        else rightWrong = jsonData.incorrect;
-        const markup = `<img src="${rightWrong}">`;
-        answer.insertAdjacentHTML('beforeend', markup);
-      });
-    };
-
-    this.showAnswer = function () {
-      const [...answers] = document.querySelectorAll('.validation');
-      answers.forEach((answer) => {
-        answer.firstChild.nextSibling.nextSibling.nextElementSibling.innerHTML =
-          jsonData.questionsData[answer.firstChild.nextSibling.id].ans;
-        answer.firstChild.nextSibling.removeChild(
-          answer.firstChild.nextSibling.firstChild
-        );
-        const right = document.createElement('img');
-        right.src = jsonData.correct;
-        answer.firstChild.nextSibling.appendChild(right);
-        elementsObject['btnSubmit'].src = jsonData.btnSubmitDisabled;
-      });
-    };
-
-    this.handleEvents = function () {
-      elementsObject.btnReset.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (e.target.getAttribute('src') === jsonData.btnResetDisabled) return;
+      // console.log(resetBtn);
+      resetBtn.addEventListener("click", () => {
         location.reload();
       });
 
-      elementsObject.btnSubmit.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (e.target.getAttribute('src') === jsonData.btnSubmitDisabled) return;
-        self.submitData();
-        elementsObject['btnShowme'].src = jsonData.btnShowmeEnabled;
-      });
+      submitBtn.addEventListener("click", () => {
 
-      elementsObject.btnShowme.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (e.target.getAttribute('src') === jsonData.btnShowmeDisabled) return;
-        self.showAnswer();
-      });
-
-      document
-        .querySelector('.btn-close')
-        .addEventListener('click', function (e) {
-          const answer = window.confirm('Are you sure want to exit?');
-          if (answer) {
-            window.close();
+        let wrongAnsCounter = 0;
+        var ansBoxes = document.querySelectorAll(".ans-box");
+        var correctAns = jsonData.correctAns;
+        let ansImg = "";
+        for (let i = 0; i < ansBoxes.length; i++) {
+          ansImg = document.getElementById(`ansImg${i}`);
+          if (ansBoxes[i].innerText === correctAns[i]) {
+            ansImg.classList.remove("hide");
+            ansImg.src = jsonData.rightAnsImg.src;
           } else {
+            ansImg.classList.remove("hide");
+            ansImg.src = jsonData.wrongAnsImg.src;
+            wrongAnsCounter++;
           }
+        }
+        if (wrongAnsCounter >= 3) {
+          // var showMeBtn = document.querySelector(".btn-show-me");
+
+          showMeBtn.disabled = false;
+          showMeBtn.style.background = `url(${jsonData.btnShowmeEnabled}) no-repeat`;
+          showMeBtn.style.backgroundSize = "100% 100%";
+        }
+        submitBtn.disabled = true;
+        submitBtn.style.background = `url(${jsonData.btnSubmitDisabled}) no-repeat`;
+        submitBtn.style.backgroundSize = "100% 100%";
+      });
+      showMeBtn.addEventListener("click", () => {
+        var ansBoxes = document.querySelectorAll(".ans-box");
+        var correctAns = jsonData.correctAns;
+
+        var ansImg = document.querySelectorAll(".ansImg");
+        ansImg.forEach((img) => {
+          img.classList.add("hide");
         });
-    };
+        ansBoxes.forEach((drop, i) => {
+          drop.removeChild(drop.lastChild);
+          drop.innerText = correctAns[i];
+        });
+        showMeBtn.disabled = true;
+        showMeBtn.style.background = `url(${jsonData.btnShowmeDisabled}) no-repeat`;
+        showMeBtn.style.backgroundSize = "100% 100%";
+      })
+    }
+
+
 
     // Initialization
     this.init();
 
-    // Display Questions
+    // Display Questions                                                                        
     this.loadQuestions();
 
     // Enable Drag & Drop
     this.enableDragAndDrop();
 
     // Handle Reset and Submit
-    this.handleEvents();
+    // this.handleEvents();
   };
 
   const app = new Test();
 
 }
- 

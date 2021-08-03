@@ -1,4 +1,4 @@
-*{
+* {
   font-family: 'Arial';
   margin: 0;
   padding: 0;
@@ -9,18 +9,24 @@
   height: 5rem;
   border: 1px solid #000000;
 }
+
 /* Title */
+
 .header h3 {
   margin-left: 1.5rem;
   padding-top: 1rem;
   font-size: 1.5rem;
 }
+
 /* Analyze */
+
 .header p {
   margin-left: 1.5rem;
   font-size: 18px;
 }
+
 /* Close Button */
+
 .header .close {
   cursor: pointer;
   float: right;
@@ -32,7 +38,9 @@
   height: 5.3rem;
   border: 1px solid #000000;
 }
+
 /* CLOSE */
+
 .header .close .cls {
   position: relative;
   bottom: 0.9rem;
@@ -41,119 +49,122 @@
 }
 
 /* Main Container */
+
 .container {
   margin-left: 4%;
 }
+
 /* Check Your Knoweldge div */
+
 .info {
   margin-top: 2rem;
   font-size: 1.5rem;
   font-weight: bold;
 }
+
 /* Underline on check */
+
 .dash {
   width: 1rem;
   height: 0.2rem;
   background-color: rgb(41, 153, 231);
 }
+
 /* Match the relevant area... */
-.container .head-title {
-  margin-top: 1rem;
-  font-size: 1rem;
-}
+
 /* When done click submit headinfo... */
+
 .container .head-info {
   margin-top: 0.6rem;
   font-size: 1rem;
   color: rgb(41, 153, 231);
 }
 
-.question {
-  align-items: center;
-  display: inline-flex;
-  flex-direction: row;
-  height: 2.2rem;
-  width: 100%;
-  /* flex-wrap: nowrap; */
-}
-
 /* Sr no bg-coloraa */
-.question .srno {
-  color: #43A5E9;
 
+.srno {
+  color: #43A5E9;
   background-color: #E9EFF3;
   border-bottom-left-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Empty Box to drop a */
+
+/*  Draggable Answer Box  */
+
+.question {
+  display: flex;
+  margin-bottom: 10px;
+  height: 50px;
+}
+
+.ans-box {
+  border: 2.5px dashed rgb(163, 163, 163);
+  height: 50px;
+  width: 200px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: bold;
 }
-/* Empty Box to drop a */
-.question .ans-box {
-  border: 2px dotted #d3d3d3;
-  border-radius: 0.2rem;
-  background-color: #fff;
-  height: 30%;
-  width: 10%;
-}
-/*  Draggable Answer Box  */
-.question .ans-opt {
-  border: 2px solid #666;
-  width: 10%;
-  height: 30%;
-  background-color: #fff;
-  margin-left: 6rem;
+
+.ans-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #E9EFF3;
+
+  width: 200px;
+  height: 50px;
+  font-weight: bold;
   text-align: center;
-  border-radius: 0.2rem;
   cursor: pointer;
+  z-index: 1;
+}
+.hide{
+  display: none;
+}
+.options {
+  height: 50px;
+  width: 200px;
+  margin-left: 50px;
 }
 
-/* Reduce the opacity of the ans box when hover */
-.ans-opt:hover {
+.drag {
   opacity: 0.5;
+  z-index: 0;
 }
 
-/* When ans box is dragged make the box blank*/
-.ans-opt.dragged {
-  user-select: none;
-  opacity: 0.1;
-  cursor: default;
-  border: 3px dotted #666;
-}
-
-.ans-opt.dragged:hover {
-  opacity: 0.1;
-}
-
-.ans-box.dropped {
-  border: 2px solid #666;
-  border-radius: 0.5em;
-  width: 10%;
-  height: 30%;
-  text-align: center;
-}
-
-.ans-box.ans-box-hover {
-  /* border-width: 5px; */
-  border-color: green;
-  /* transform: scale(1.1); */
+.questionz {
+  margin-top: 2%;
 }
 
 .question .ques {
   min-width: 50%;
 }
-/* Question div */
-.question > div {
-  margin-top: 4rem;
+
+.question>div {
   background-color: rgb(243, 243, 243);
   align-items: center;
-  padding: 1rem;
-  font-size: 1rem;
 }
+
 /* All button */
+
 .footer {
   margin-top: 2rem;
 }
 
-.footer > img {
+.footer>img {
   width: auto;
   height: 2.7rem;
 }
@@ -161,14 +172,22 @@
 .btn-submit {
   float: right;
   margin-right: 9rem;
+  height: 20px;
+  height: 50px;
 }
-
+.btn{
+  border: none;
+}
 .btn-show-me {
   margin-left: 1rem;
+  height: 20px;
+  height: 50px;
 }
 
 .btn-reset {
   margin-left: 4rem;
+  height: 20px;
+  height: 50px;
 }
 
 .btn {
@@ -183,3 +202,5 @@
   position: absolute;
   margin-left: -6.5rem;
 }
+
+/* ======================= */
